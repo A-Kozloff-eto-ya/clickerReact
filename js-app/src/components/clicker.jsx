@@ -1,68 +1,52 @@
-import React from 'react';
-import {useState} from "react";
+import React, {Component} from 'react';
+import './compStyles/_clicker.css'
 
-const Counter = () => {
+export default class Clicker extends Component {
 
-    const [clicks, setClicks] = useState(0)
-    const [gain, setGain] = useState(1)
-    const [money, setMoney] = useState(1000)
+    constructor(props) {
+        super(props);
+        this.state = {
+            clicks: 0,
+            gain: 1,
+            money: 1000
+        }
+        this.increaseClicks = this.increaseClicks.bind(this)
+        this.gainClicks = this.gainClicks.bind(this)
+        this.get100Money = this.get100Money.bind(this)
+    }
 
     // Копить клики
-    function getClicks() {
-
-        setClicks(clicks + gain)
-    }
-    // Улучшить клики
-    function getGainClick1() {
-        if (money >= 10) {
-            setGain(gain + 1)
-            setMoney(money - 10)
-        }
+    increaseClicks() {
+        this.setState((prevClicks) => ({clicks: prevClicks.clicks + this.state.gain}));
     }
 
-    function getGainClick10() {
-        if (money >= 10) {
-            setGain(gain + 10)
-            setMoney(money - 90)
-        }
+    // Усилить клик
+    gainClicks() {
+        if (this.state.money < 1000) return alert("У тебя нет такой суммы");
+        this.setState((prevGain) => ({gain: prevGain.gain + 1}));
+        this.setState((prevMoney) => ({money: prevMoney.money - 1000}))
     }
 
-    function getGainClick100() {
-        if (money >= 10) {
-            setGain(gain + 100)
-            setMoney(money - 900)
+    get100Money() {
+
+        if (this.state.clicks >= 10) {
+            this.setState((prevMoney) => ({money: prevMoney.money + 100}))
+            this.setState((prevClicks) => ({clicks: prevClicks.clicks - 10}));
+        } else {
+            return alert("КЛИКАЙ БОЛЬШЕ!!!")
         }
-    }
-// Продать клики
-    function sellClicks100() {
-        if (clicks >= 100) {
-            setMoney(money + 10)
-            setClicks(clicks - 100)
-        }
+
     }
 
-    function sellClicks1000() {
-        if (clicks >= 1000) {
-            setMoney(money + 100)
-            setClicks(clicks - 1000)
-        }
+    render() {
+        return (
+            <div className={'container'}>
+                <div>Клики:{this.state.clicks} <br/> Деньги:{this.state.money}</div>
+                <button className={"getClicks"} onClick={this.increaseClicks}>Копить клики</button>
+                <button className={"gainClicks"} onClick={this.gainClicks}>Усилить клик за 1000</button>
+                <button className={"getMoney"} onClick={this.get100Money}>Продать 10 кликов за 100</button>
+            </div>
+        );
     }
-
-    return (
-        <div>
-            <h1 className={"tablo"}> ТВОИ КЛИКИ:{clicks}!!!</h1>
-            <button className={"getClicksButton"} onClick={getClicks}>ЖМИ НА МЕНЯ!!!</button>
-                <br/>
-                <h2>СИЛА ТВОЕГО КЛИКА:{gain}!!!</h2>
-                <button className={"gainClicksButton1"} onClick={getGainClick1}>+1 КЛИК ЗА 10 ДЕНЕГ!!!</button>
-                <button className={"gainClicksButton10"} onClick={getGainClick10}>+10 КЛИКОВ ЗА 90 ДЕНЕГ!!!</button>
-                <button className={"gainClicksButton100"} onClick={getGainClick100}>+100 КЛИКОВ ЗА 900 ДЕНЕГ!!!</button>
-                    <h2 className={"moneyTab"}>ТВОИ ДЕНЬГИ: {money}</h2>
-                    <h2 className={"getMoney"}>ЗАРАБОТАТЬ ДЕНЬГИ!!!</h2>
-                    <button className={"sellClicks100"} onClick={sellClicks100}>ПРОДАТЬ 100 КЛИКОВ!!!</button>
-                    <button className={"sellClicks1000"} onClick={sellClicks1000}>ПРОДАТЬ 1000 КЛИКОВ!!!</button>
-        </div>
-    );
 };
 
-export default Counter;

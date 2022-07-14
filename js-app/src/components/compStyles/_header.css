@@ -1,0 +1,12 @@
+.header {
+    background-color: darkgray;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+}
+
+.title {
+    font-family: "Comic Sans MS", serif;
+    font-size: 35px;
+
+}
