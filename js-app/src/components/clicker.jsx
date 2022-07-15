@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './compStyles/_clicker.css'
+import Popup from "reactjs-popup";
 
 export default class Clicker extends Component {
 
@@ -26,7 +27,7 @@ export default class Clicker extends Component {
         this.setState((prevGain) => ({gain: prevGain.gain + 1}));
         this.setState((prevMoney) => ({money: prevMoney.money - 1000}))
     }
-
+    //Продать клики
     get100Money() {
 
         if (this.state.clicks >= 10) {
@@ -40,11 +41,22 @@ export default class Clicker extends Component {
 
     render() {
         return (
-            <div className={'container'}>
-                <div>Клики:{this.state.clicks} <br/> Деньги:{this.state.money}</div>
-                <button className={"getClicks"} onClick={this.increaseClicks}>Копить клики</button>
-                <button className={"gainClicks"} onClick={this.gainClicks}>Усилить клик за 1000</button>
-                <button className={"getMoney"} onClick={this.get100Money}>Продать 10 кликов за 100</button>
+            <div className={"clicker"}>
+                <div className={"container"}>
+                    <div className={"tab"}>Клики:{this.state.clicks} <br/> Деньги:{this.state.money}</div>
+                    <div className={"futter"}>
+                        <div className={"buttonsSubs"}>
+                            <div>Усилить клик за <br/> 1000</div>
+                            <div>Копить клики</div>
+                            <div>Продать 10 кликов</div>
+                        </div>
+                        <div className={"buttons"}>
+                            <button className={"gainClicks"} onClick={this.gainClicks}>+1</button>
+                            <button className={"getClicks"} onClick={this.increaseClicks}>+</button>
+                            <button className={"getMoney"} onClick={this.get100Money}>+100</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

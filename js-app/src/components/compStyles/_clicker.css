@@ -1,8 +1,73 @@
-.container {
+.clicker {
     position: absolute;
     top: 50%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%)
+}
+/*Обертка контента*/
+.container {
+    border: 1px solid;
+    height: 300px;
+    width: 452px;
+    position: relative;
+}
+/*Табло с инфой*/
+.tab {
+    margin: 0 0 20px 0;
+    font-size: 30px;
+}
+/*Обертка кнопок и описания*/
+.futter {
+    position: absolute;
+    bottom: 0;
+}
+/*Описание кнопок*/
+.buttonsSubs {
+    width: 450px;
+    margin: 0 auto;
+    background: darkgray;
+    height: 50px;
 
 }
+
+.buttonsSubs div {
+    border: 1px solid black;
+    float: left;
+    height: 50px;
+    line-height: 15px;
+    font-size: 15px;
+    background: dodgerblue;
+    color: white;
+    width: 150px;
+    text-align: center;
+
+}
+/*Обертка кнопок*/
+.buttons {
+    height: 50px;
+}
+/*Кнопки*/
+.buttons button {
+    border: 1px solid black;
+    font-family: Arial, serif;
+    font-size: 30px;
+    width: 150px;
+    height: 50px;
+}
+
+.getClicks {
+    background-color: green;
+}
+
+.getClicks :hover {
+    background-color: darkgreen;
+}
+
+.getClicks :active {
+    background-color: green;
+}
+
+
+
+

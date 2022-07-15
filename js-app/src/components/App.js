@@ -6,6 +6,7 @@ import './compStyles/App.css'
 
 
 
+
 export default class ClickerApp extends Component {
 
     constructor() {
@@ -15,6 +16,8 @@ export default class ClickerApp extends Component {
             title: 'React Clicker'
         };
     }
+
+
 
     render() {
         return (
